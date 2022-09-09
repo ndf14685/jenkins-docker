@@ -6,7 +6,7 @@ Open up a command prompt window and similar to the macOS and Linux instructions 
 
 Create a bridge network in Docker
 
-docker network create jenkins
+**docker network create jenkins**
 
 Run a docker:dind Docker image
 
