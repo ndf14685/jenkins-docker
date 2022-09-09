@@ -46,4 +46,13 @@ docker run --name jenkins-blueocean --restart=on-failure --detach --network jenk
 
 Proceed to the Setup wizard.
 
+The first time that you try to access to Jenkins page (localhost:8080), you have to provide an initial password instalation that is on: 
+/var/jenkins_home/secrets/initialAdminPassword
+
+
+For access to container: 
+
+docker exec -it jenkins-blueocean bash
+
+
 Reference: https://www.jenkins.io/doc/book/installing/docker/
