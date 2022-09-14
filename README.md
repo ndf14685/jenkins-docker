@@ -56,3 +56,31 @@ docker exec -it jenkins-blueocean bash
 
 
 Reference: https://www.jenkins.io/doc/book/installing/docker/
+
+
+
+Para el caso que necesites subir versionado a tu propio Registry (por ej EC2):
+
+With the image repository created, we can now push any specific images we need
+
+To view a list all images on the OS, run this command
+
+docker images
+with possible output like below
+
+REPOSITORY                                                  TAG                 IMAGE ID            CREATED             SIZE
+node                                                        current-slim        84zcb5q09aea        2 days ago         167MB
+docker/getting-started                                      latest              4f02149ex038        5 days ago         26.8MB
+github/super-linter                                         latest              8d4ed3426d51        2 weeks ago        1.94GB
+alpine                                                      latest              a23bb4015296        3 weeks ago        5.57MB
+rails_app                                                   latest              52f471ep4bb5        1 month ago        968MB
+Choose an IMAGE ID and provide tag name for this image. (remember the ${aws_account_id}, ${region}, and ${repository-name}). The ${repository-name} can be found in the terraform resource defined under the name attribute.
+
+docker tag ${image_id} ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${repository-name}:${image_tag}
+after taging this image, we can use docker to push this image to amazon's container registry
+
+docker push ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${repository-name}
+the following would be the output for a successful docker push to ECR
+
+Reference:
+https://www.oneworldcoders.com/blog/using-terraform-to-provision-amazons-ecr-and-ecs-to-manage-containers-docker
